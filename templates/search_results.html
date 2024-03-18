@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/">Search</a></li>
+            <li><a href="/map">Map</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Search Results for "{{ query }}"</h1>
+        <form action="/" method="post" class="search-form" id="search-form">
+            <input type="search" name="query" value="{{ query }}" placeholder="Enter your search query">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <main>
+        {% if results %}
+            <section class="cards">
+            {% for result in results %}
+                <article class="card">
+                    <h2><a href="{{ result['url'] }}" target="_blank">{{ result['title'] }}</a></h2>
+                    <div class="snippet-container">
+                        <p class="snippet">{{ result['snippet'][:300] }}{% if result['snippet']|length > 300 %}...{% endif %}</p>
+                        <span>Distance: {{ result['distance'] }}</span>
+                        {% if result['snippet']|length > 300 %}
+                        <div>
+                            <a href="#" class="read-more" data-snippet="{{ result['snippet'] }}" data-url="{{ result['url'] }}">Read More</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+            </section>
+        {% else %}
+            <p>No results found. Try a different query.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Thank you to the <a href="https://philosophy.stanford.edu" style="color:rgba(140,21,21,255);" target="_blank">Stanford Philosophy Department</a> for the <a href="https://plato.stanford.edu" style="color:rgba(140,21,21,255);" target="_blank">SEP</a></p>
+        <p><a href="https://philosophy.stanford.edu" style="color:rgba(140,21,21,255);" target="_blank">Built by Aaron K. Aggarwal</a> with <a href="https://platform.openai.com/docs/guides/embeddings" style="color:rgba(140,21,21,255);" target="_blank">OpenAI's Embeddings</a></p>
+    </footer>
+
+    <div id="article-popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-snippet"></p>
+            <div class="popup-buttons">
+                <button id="left-button">Find Similar</button>
+                <a href="" id="right-button" target="_blank">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
