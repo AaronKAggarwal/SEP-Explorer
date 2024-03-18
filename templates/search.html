@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/">Search</a></li>
+            <li><a href="/map">Map</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Stanford Encyclopedia of Philosophy Search</h1>
+        <h2>A semantic search engine for the SEP</h2>
+    </header>
+
+    <main>
+        <form action="/" method="post" class="search-form">
+            <input type="search" name="query" placeholder="Enter your search query">
+            <button type="submit">Search</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>Thank you to the <a href="https://philosophy.stanford.edu" style="color:rgba(140,21,21,255);" target="_blank">Stanford Philosophy Department</a> for the <a href="https://plato.stanford.edu" style="color:rgba(140,21,21,255);" target="_blank">SEP</a></p>
+        <p>Built by Aaron K. Aggarwal with <a href="https://platform.openai.com/docs/guides/embeddings" style="color:rgba(140,21,21,255);" target="_blank">OpenAI's Embeddings</a></p>
+    </footer>
+
+    <script src="static/scripts.js"></script>
+</body>
+</html>
